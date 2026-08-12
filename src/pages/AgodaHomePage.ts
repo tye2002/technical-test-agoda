@@ -73,11 +73,26 @@ export class AgodaHomePage {
     await cell.click();
   }
 
+  private async dismissOverlays(): Promise<void> {
+    try {
+      const closeButtons = this.page.locator(
+        'button[aria-label="Close"], [data-element-name="search-box-popup-close"], .ab-close-button'
+      );
+      if (await closeButtons.first().isVisible().catch(() => false)) {
+        await closeButtons.first().click().catch(() => {});
+      }
+    } catch {
+      // Ignore errors if no overlay present
+    }
+  }
+
   async setOccupancy(
     targetRooms: number,
     targetAdults: number,
     targetChildren: number
   ): Promise<void> {
+    await this.dismissOverlays();
+
     const roomPlusBtn = this.page
       .locator(
         '[data-element-name="occupancy-selector-panel-rooms"][data-selenium="plus"]'
@@ -94,9 +109,19 @@ export class AgodaHomePage {
       )
       .first();
 
-    const isPopupVisible = await roomPlusBtn
+    let isPopupVisible = await roomPlusBtn
       .isVisible()
       .catch(() => false);
+
+    if (!isPopupVisible) {
+      try {
+        await roomPlusBtn.waitFor({ state: 'visible', timeout: 2000 });
+        isPopupVisible = true;
+      } catch {
+        isPopupVisible = false;
+      }
+    }
+
     if (!isPopupVisible) {
       await this.occupancyBox.first().click();
       await roomPlusBtn.waitFor({
