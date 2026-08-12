@@ -138,10 +138,12 @@ npm run format:check
 
 ## 📑 Test Case Flow
 
-1. **Given**: User navigates to the Agoda homepage (`https://www.agoda.com/`).
-2. **When**: User enters `"Muong Thanh Saigon Centre Hotel"` into the destination search field.
-3. **And**: User selects the check-in date (`Current Date + 2`) and check-out date (`Current Date + 3`).
-4. **And**: User configures occupancy to `1 room`, `4 adults`, and `2 children`.
-5. **And**: User clicks the Search button.
-6. **And**: User selects the first available hotel option from the search results.
-7. **Then**: Asserts that the hotel price is visibly displayed.
+1. **Given**: User navigates to the Agoda home page (`https://www.agoda.com/`).
+2. **When**: User searches for hotel `"Muong Thanh Saigon Centre Hotel"`.
+3. **And**: User selects check-in date as current date plus `2` days and check-out date as current date plus `3` days.
+4. **And**: User selects `1` room, `4` adults, and `2` children.
+5. **And**: User clicks the search button.
+6. **And**: Verifies the search results header matches check-in date plus `2` days and check-out date plus `3` days.
+7. **And**: Verifies the search results header matches `1` room, `4` adults, and `2` children.
+8. **When**: User chooses the first available hotel option.
+9. **Then**: Asserts that the price of the hotel is visibly displayed.
