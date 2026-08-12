@@ -1,0 +1,6 @@
+# Dependencies
+node_modules/
+
+# Build and report output
+reports/
+package-lock.json

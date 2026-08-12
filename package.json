@@ -1,0 +1,36 @@
+{
+  "name": "technical-test-agoda",
+  "version": "1.0.0",
+  "description": "Playwright QA Automation Test for Agoda Hotel Search (Amaris Consulting Technical Test)",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "report": "start reports/cucumber-report.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tye2002/technical-test-agoda.git"
+  },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "typescript",
+    "automation-testing",
+    "agoda"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tye2002/technical-test-agoda/issues"
+  },
+  "homepage": "https://github.com/tye2002/technical-test-agoda#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^13.2.1"
+  }
+}
