@@ -1,11 +1,7 @@
 {
   "default": {
-    "paths": [
-      "src/features/**/*.feature"
-    ],
-    "requireModule": [
-      "ts-node/register"
-    ],
+    "paths": ["src/features/**/*.feature"],
+    "requireModule": ["ts-node/register"],
     "require": [
       "src/core/**/*.ts",
       "src/steps/**/*.steps.ts"

@@ -16,8 +16,13 @@ export class DateHelper {
     date: Date,
     pattern: DateFormatPattern = DateFormatPattern.MONTH_DAY_PADDED_YEAR
   ): string {
-    const month = date.toLocaleString('en-US', { month: 'short' });
-    const dayPadded = String(date.getDate()).padStart(2, '0');
+    const month = date.toLocaleString('en-US', {
+      month: 'short'
+    });
+    const dayPadded = String(date.getDate()).padStart(
+      2,
+      '0'
+    );
     const daySingle = String(date.getDate());
     const year = date.getFullYear();
 
@@ -35,4 +40,3 @@ export class DateHelper {
     }
   }
 }
-

@@ -1,5 +1,13 @@
-import { World, IWorldOptions, setWorldConstructor } from '@cucumber/cucumber';
-import { Browser, BrowserContext, Page } from '@playwright/test';
+import {
+  World,
+  IWorldOptions,
+  setWorldConstructor
+} from '@cucumber/cucumber';
+import {
+  Browser,
+  BrowserContext,
+  Page
+} from '@playwright/test';
 import { AgodaHomePage } from '../pages/AgodaHomePage';
 import { AgodaSearchResultsPage } from '../pages/AgodaSearchResultsPage';
 import { AgodaHotelDetailPage } from '../pages/AgodaHotelDetailPage';
@@ -13,7 +21,10 @@ export interface CustomWorld extends World {
   hotelDetailPage?: AgodaHotelDetailPage;
 }
 
-export class AgodaWorld extends World implements CustomWorld {
+export class AgodaWorld
+  extends World
+  implements CustomWorld
+{
   browser?: Browser;
   context?: BrowserContext;
   page?: Page;

@@ -21,7 +21,9 @@ This repository contains the automated test solution for the **Amaris Consulting
 - **Automation Framework**: Playwright (`@playwright/test`)
 - **BDD Framework**: Cucumber (`@cucumber/cucumber`)
 - **Language**: TypeScript (`^5.0.0`)
-- **Design Pattern**: Page Object Model (POM)
+- **Design Pattern**: Page Object Model (POM) & Custom Cucumber World
+- **Code Formatter**: Prettier (`^3.2.5`)
+- **CI/CD**: GitHub Actions (`.github/workflows/playwright.yml`)
 - **Reporter**: Cucumber HTML Reporter (`reports/cucumber-report.html`)
 
 ---
@@ -30,23 +32,33 @@ This repository contains the automated test solution for the **Amaris Consulting
 
 ```text
 technical-test-agoda/
+├── .github/
+│   └── workflows/
+│       └── playwright.yml            # GitHub Actions CI/CD workflow configuration
 ├── src/
 │   ├── core/
-│   │   └── hook.ts                  # Cucumber lifecycle hooks (Browser launch, context, teardown)
+│   │   ├── custom-world.ts           # Cucumber Custom World for thread-safe scenario isolation
+│   │   └── hook.ts                   # Cucumber lifecycle hooks (Browser launch, context, teardown)
 │   ├── features/
-│   │   └── search-price.feature     # Gherkin BDD Feature scenario
+│   │   └── search-price.feature      # Gherkin BDD Feature scenario
 │   ├── pages/
-│   │   ├── AgodaHomePage.ts         # POM for Agoda Home Page & Search controls
-│   │   └── AgodaSearchResultsPage.ts# POM for Search Results & Price assertion
+│   │   ├── AgodaHomePage.ts          # POM for Agoda Home Page & Search controls
+│   │   ├── AgodaSearchResultsPage.ts # POM for Search Results Page & verification
+│   │   └── AgodaHotelDetailPage.ts   # POM for Hotel Detail Page & room price assertion
 │   ├── steps/
-│   │   └── search-price.steps.ts    # Cucumber Step Definitions
+│   │   └── search-price.steps.ts     # Cucumber Step Definitions
 │   └── utils/
-│       └── DateHelper.ts            # Dynamic date calculation utility
-├── reports/                         # Generated test reports (HTML & JSON)
-│   └── cucumber-report.html
-├── cucumber.json                    # Cucumber configuration file
-├── tsconfig.json                    # TypeScript compiler configuration
-└── package.json                     # Node.js dependencies and script commands
+│       └── DateHelper.ts             # Dynamic date calculation utility with DateFormatPattern enum
+├── reports/                          # Generated test reports (HTML & JSON)
+│   ├── cucumber-report.html
+│   └── cucumber-report.json
+├── .gitignore                        # Git ignore patterns
+├── .prettierrc                       # Prettier code formatting rules
+├── .prettierignore                   # Prettier ignore patterns
+├── cucumber.json                     # Cucumber runner configuration file
+├── tsconfig.json                     # TypeScript compiler configuration
+├── package.json                      # Node.js dependencies and npm scripts
+└── README.md                         # Project documentation
 ```
 
 ---
@@ -61,12 +73,14 @@ technical-test-agoda/
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/tye2002/technical-test-agoda.git
    cd technical-test-agoda
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -82,7 +96,7 @@ technical-test-agoda/
 
 ### Run Tests (Headed Mode)
 
-To execute the test with the browser UI visible:
+To execute the test suite with browser UI visible:
 
 ```bash
 npm test
@@ -90,7 +104,7 @@ npm test
 
 ### Run Tests (Headless Mode in Bash)
 
-To execute the test in headless mode in Bash / Git Bash:
+To execute the test in headless mode:
 
 ```bash
 HEADLESS=true npm test
@@ -98,10 +112,26 @@ HEADLESS=true npm test
 
 ### View Test Report
 
-To open the generated HTML test report in your default browser (no PowerShell dependency):
+To open the generated HTML test report in your browser:
 
 ```bash
 npm run report
+```
+
+---
+
+## 🎨 Code Formatting (Prettier)
+
+To format all source code files according to the project's Prettier rules:
+
+```bash
+npm run format
+```
+
+To check for formatting issues without writing changes:
+
+```bash
+npm run format:check
 ```
 
 ---
